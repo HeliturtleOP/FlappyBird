@@ -35,6 +35,14 @@ namespace FlappyBird
                 
                 if (pictureBoxList[i].Location.X <= -pictureBoxList[i].Size.Width)
                 {
+                    if (i % 2 == 0)
+                    {
+                        Random r = new Random();
+
+                        pictureBoxList[i].Top = r.Next(157, 364);
+                        pictureBoxList[i + 1].Top = pictureBoxList[i].Top - 450;
+                    }
+
                     pictureBoxList[i].Left = this.Size.Width;                    
                 }
                 pictureBoxList[i].Left -= speed;
@@ -60,12 +68,14 @@ namespace FlappyBird
 
             for (int i = 0; i < pictureBoxList.Count; i++)
             {
+
+
                 Rectangle r = new Rectangle(pictureBoxList[i].Left, pictureBoxList[i].Top, pictureBox2.Width, pictureBox2.Height);
 
                 if (r1.IntersectsWith(r))
                 {
-                    label1.Visible = true;
-                    timer1.Stop();
+                    //label1.Visible = true;
+                    //timer1.Stop();
                 }
             }
 
@@ -74,7 +84,7 @@ namespace FlappyBird
 
         private void playSimpleSound()
         {
-            SoundPlayer simpleSound = new SoundPlayer(@"C:\Users\Owner\Documents\FlappyBird\FlappyBird\Bounce.wav");
+            SoundPlayer simpleSound = new SoundPlayer(@".\Bounce.wav");
             simpleSound.Play();
         }
 
@@ -83,7 +93,7 @@ namespace FlappyBird
             if (e.KeyCode == Keys.Space)
             {
                 fallSpeed = jumpVelocity;
-                playSimpleSound();
+                //playSimpleSound();
             } 
         }
 
